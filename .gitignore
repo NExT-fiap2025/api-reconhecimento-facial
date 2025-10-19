@@ -1,0 +1,14 @@
+# Ambientes Virtuais
+venv/
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+
+# Arquivos de banco de dados locais (Opcional, mas recomendado)
+# Descomente a linha abaixo se não quiser salvar os .pkl no Git
+# *.pkl 
+
+# Arquivos específicos do OS (Exemplo para macOS e Windows)
+.DS_Store
+Thumbs.db

@@ -1,0 +1,139 @@
+/* Em static/style.css */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #1e1e1e;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+h1 {
+    color: #ffffff;
+    margin-top: 0;
+}
+
+p {
+    color: #aaaaaa;
+    margin-bottom: 1.5rem;
+}
+
+.video-container {
+    position: relative;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: #000;
+}
+
+#video-feed {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scaleX(-1); /* Espelha a câmera */
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+input[type="text"] {
+    padding: 0.8rem;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+input[type="text"]::placeholder {
+    color: #777;
+}
+
+button {
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#btn-cadastrar {
+    background-color: #007bff;
+    color: white;
+}
+#btn-cadastrar:hover {
+    background-color: #0056b3;
+}
+
+#btn-validar {
+    background-color: #28a745;
+    color: white;
+}
+#btn-validar:hover {
+    background-color: #1e7e34;
+}
+
+/* --- Status Messages --- */
+.status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+/* Estado Padrão (Aguardando) */
+.status.info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+/* Estado de Sucesso */
+.status.success {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Estado de Erro */
+.status.error {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Estado de Carregando... */
+.status.loading {
+    background-color: #ffc107;
+    color: #333;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}

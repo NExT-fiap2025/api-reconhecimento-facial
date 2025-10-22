@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Facial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Autenticação Facial</h1>
+        <p>Posicione seu rosto na câmera e escolha uma opção.</p>
+
+        <div class="video-container">
+            <video id="video-feed" autoplay playsinline></video>
+            <canvas id="snapshot-canvas" style="display: none;"></canvas>
+        </div>
+
+        <div class="actions">
+            <div class="action-group">
+                <input type="text" id="input-nome" placeholder="Digite seu nome para cadastrar">
+                <button id="btn-cadastrar">Cadastrar Rosto</button>
+            </div>
+
+            <div class="action-group">
+                <button id="btn-validar">Validar (Login)</button>
+            </div>
+        </div>
+
+        <div id="status-message" class="status">
+            Aguardando ação...
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

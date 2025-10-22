@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import dlib
 import numpy as np
 import os
@@ -52,6 +53,7 @@ THRESH = 0.6
 
 # Cria a nossa aplicação Flask
 app = Flask(__name__)
+CORS(app)
 
 # --- Funções Auxiliares ---
 # (base64_para_imagem e extrair_vetor_facial continuam iguais)
@@ -106,6 +108,16 @@ def cadastrar_usuario():
 
     print(f"Processando imagem para: {nome}")
     imagem = base64_para_imagem(img_b64)
+
+    if imagem is None and "," in img_b64:
+        try:
+            # Tenta decodificar de novo, pulando o prefixo
+            img_b64_sem_prefixo = img_b64.split(',', 1)[1]
+            imagem = base64_para_imagem(img_b64_sem_prefixo)
+        except Exception as e:
+            print(f"Erro ao tentar splitar o base64: {e}")
+            pass # Deixa o 'if' de baixo tratar como erro
+    
     if imagem is None:
         return jsonify({'erro': 'Formato de imagem Base64 invalido.'}), 400
 
@@ -143,6 +155,16 @@ def validar_usuario():
     # 2. Processa a imagem e extrai o vetor
     print("Processando imagem para validação...")
     imagem = base64_para_imagem(img_b64)
+
+    if imagem is None and "," in img_b64:
+        try:
+            # Tenta decodificar de novo, pulando o prefixo
+            img_b64_sem_prefixo = img_b64.split(',', 1)[1]
+            imagem = base64_para_imagem(img_b64_sem_prefixo)
+        except Exception as e:
+            print(f"Erro ao tentar splitar o base64: {e}")
+            pass # Deixa o 'if' de baixo tratar como erro
+
     if imagem is None:
         return jsonify({'erro': 'Formato de imagem Base64 invalido.'}), 400
 
@@ -188,6 +210,41 @@ def validar_usuario():
             'usuario': None,
             'distancia': float(menor_distancia)
         }), 404 # 404 Not Found
+
+@app.route('/api/admin/usuarios', methods=['GET'])
+def listar_usuarios():
+    """ Retorna uma lista com os nomes de todos os usuários cadastrados. """
+    print("--- Recebida requisição em /api/admin/usuarios ---")
+    
+    # db_usuarios é o seu dicionário carregado no início do script
+    lista_nomes = list(db_usuarios.keys())
+    
+    print(f"Retornando {len(lista_nomes)} usuários.")
+    return jsonify({'status': 'sucesso', 'usuarios': lista_nomes}), 200
+
+@app.route('/api/admin/excluir/<string:nome_usuario>', methods=['DELETE'])
+def excluir_usuario(nome_usuario):
+    """ Exclui um usuário específico do banco de dados. """
+    print(f"--- Recebida requisição DELETE para /api/admin/excluir/{nome_usuario} ---")
+    
+    if nome_usuario in db_usuarios:
+        # Exclui o usuário do dicionário
+        del db_usuarios[nome_usuario]
+        
+        # Salva as mudanças no arquivo .pkl
+        salvar_db(db_usuarios)
+        
+        print(f"Usuário {nome_usuario} excluído com sucesso.")
+        return jsonify({
+            'status': 'sucesso',
+            'mensagem': f'Usuario {nome_usuario} foi excluido.'
+        }), 200
+    else:
+        # Se o usuário não existe
+        print(f"Usuário {nome_usuario} não encontrado para exclusão.")
+        return jsonify({
+            'erro': 'Usuario nao encontrado.'
+        }), 404
 
 
 if __name__ == '__main__':

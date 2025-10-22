@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .container { max-width: 800px; }
+        #lista-usuarios {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+        #lista-usuarios li {
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        #lista-usuarios li button {
+            background-color: #dc3545;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
+        }
+        #lista-usuarios li button:hover {
+            background-color: #a71d2a;
+        }
+        #btn-atualizar {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Painel de Administração</h1>
+        <p>Gerenciamento de usuários cadastrados.</p>
+
+        <div class="actions">
+            <button id="btn-atualizar">Atualizar Lista</button>
+        </div>
+
+        <ul id="lista-usuarios">
+            </ul>
+        
+        <div id="status-admin" class="status">
+            Clique em "Atualizar Lista" para começar.
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

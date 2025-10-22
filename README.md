@@ -9,7 +9,7 @@
 
 ## ▶️ Vídeo Explicativo (Opcional)
 
-- [Link para o vídeo, se houver](https://youtu.be/jTeJqBwt6EE)
+- [Link para o vídeo}(https://youtu.be/jTeJqBwt6EE)
 
 ## 📌 Objetivo
 

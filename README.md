@@ -2,15 +2,14 @@
 
 ## 📌 Integrantes (Exemplo)
 
-- [Seu Nome Aqui] - [Sua Matrícula/ID]
-- [Nome Outro Integrante] - [Matrícula/ID]
-- ...
-
-*(Substitua pelos nomes e IDs reais)*
+- Eduardo Gomes Pinho Junior - 97919
+- Gustavo Ferreira Lopes - 98887
+- Pedro Henrique Salvitti - 88166
+- Enzo de Oliveira Cunha - 550985
 
 ## ▶️ Vídeo Explicativo (Opcional)
 
-- [Link para o vídeo, se houver](https://...)
+- [Link para o vídeo, se houver](https://youtu.be/jTeJqBwt6EE)
 
 ## 📌 Objetivo
 
